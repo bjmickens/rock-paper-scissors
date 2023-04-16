@@ -1,13 +1,13 @@
 // create function called getComputerChoice
 
-function getComputerChoice(arr) {
-
-  const choice = arr[Math.floor(Math.random() * arr.length)];
+function getComputerChoice() {
+  const array = ['Rock', 'Paper', 'Scissors'];
+  let choice = array[Math.floor(Math.random() * array.length)];
   return choice;
 
 }
 
-const array = ['Rock', 'Paper', 'Scissors'];
+
 
 //create function that plays a single round of RPS
 //take two parameters - playerSelection and computerSelection
@@ -21,7 +21,7 @@ let playerScore = 0;
 let computerScore = 0; 
 
 let playerSelection = prompt('Enter Rock, Paper, or Scissors').toLowerCase();
-let computerSelection = getComputerChoice(array).toLowerCase();
+let computerSelection = getComputerChoice().toLowerCase();
 
 let tie = 'It is a tie!';
 let playerWin = `You win! ${playerSelection} beats ${computerSelection}`;
@@ -37,16 +37,24 @@ function playRound(playerSelection, computerSelection) {
    else if ((playerSelection === 'scissors' && computerSelection === 'paper') || 
    (playerSelection === 'rock' && computerSelection === 'scissors') || 
    (playerSelection === 'paper' && computerSelection === 'rock')){
+    playerScore++; 
     return playerWin;
    }
 
    else if ((playerSelection === 'rock' && computerSelection === 'paper') || (playerSelection === 'paper' && computerSelection === 'scissors') ||
    (playerSelection === 'scissors' && computerSelection === 'rock')){
+    computerScore++; 
     return computerWin;
    }
    
 }
 
+function game(){
+  for (let i=0; i<5; i++){
+    playRound();
+  }
+}
+game();
 
 console.log('Computer selected: ' + computerSelection);
 console.log(playRound(playerSelection, computerSelection));
