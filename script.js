@@ -64,6 +64,15 @@ let computerSelection;
     // console.log('Computer selected: ' + computerSelection);
        
        console.log('Player score = ' + playerScore, 'Computer score = ' + computerScore);
+       if (computerScore > playerScore){
+        console.log('Computer wins!');
+       }
+       else if (computerScore < playerScore){
+        console.log('Player wins!');
+      }
+      else {
+        console.log('It is a tie!');
+      }
 
 
 
