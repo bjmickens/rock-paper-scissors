@@ -20,40 +20,50 @@ function getComputerChoice() {
 let playerScore = 0; 
 let computerScore = 0; 
 
-let playerSelection = prompt('Enter Rock, Paper, or Scissors').toLowerCase();
-let computerSelection = getComputerChoice().toLowerCase();
+let playerSelection;
+let computerSelection;
 
-let tie = 'It is a tie!';
-let playerWin = `You win! ${playerSelection} beats ${computerSelection}`;
-let computerWin = `You lose! ${computerSelection} beats ${playerSelection}`;
+// let tie = 'It is a tie!';
+// let playerWin = `You win! ${playerSelection} beats ${computerSelection}`;
+// let computerWin = `You lose! ${computerSelection} beats ${playerSelection}`;
 
 
 
 
     function playRound(playerSelection, computerSelection) { 
-    
+      playerSelection = prompt('Enter Rock, Paper, or Scissors').toLowerCase();
+      computerSelection = getComputerChoice().toLowerCase();
+
       if ((playerSelection === 'rock' && computerSelection === 'rock') || (playerSelection === 'scissors' && computerSelection === 'scissors') ||
       (playerSelection === 'paper' && computerSelection === 'paper')) {
-       return tie;
+       return 'It is a tie!';
       }
      
       else if ((playerSelection === 'scissors' && computerSelection === 'paper') || 
       (playerSelection === 'rock' && computerSelection === 'scissors') || 
       (playerSelection === 'paper' && computerSelection === 'rock')){
        playerScore++; 
-       return playerWin;
+       return `You win! ${playerSelection} beats ${computerSelection}`;
       }
    
       else if ((playerSelection === 'rock' && computerSelection === 'paper') || (playerSelection === 'paper' && computerSelection === 'scissors') ||
       (playerSelection === 'scissors' && computerSelection === 'rock')){
        computerScore++; 
-       return computerWin;
+       return `You lose! ${computerSelection} beats ${playerSelection}`;
       }
-       }
+     
+    }
+      
+    function game(){
+      for(let i=0; i < 5; i++){
+        console.log(playRound(playerSelection, computerSelection)); 
+      }
+    }
+    game(); 
+    
+    // console.log('Computer selected: ' + computerSelection);
        
-       console.log('Computer selected: ' + computerSelection);
-       console.log(playRound(playerSelection, computerSelection));
-       console.log(playerScore, computerScore);
+       console.log('Player score = ' + playerScore, 'Computer score = ' + computerScore);
 
 
 
