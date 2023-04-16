@@ -28,34 +28,32 @@ let playerWin = `You win! ${playerSelection} beats ${computerSelection}`;
 let computerWin = `You lose! ${computerSelection} beats ${playerSelection}`;
 
 
-function playRound(playerSelection, computerSelection) { 
-   if ((playerSelection === 'rock' && computerSelection === 'rock') || (playerSelection === 'scissors' && computerSelection === 'scissors') ||
-   (playerSelection === 'paper' && computerSelection === 'paper')) {
-    return tie;
-   }
-  
-   else if ((playerSelection === 'scissors' && computerSelection === 'paper') || 
-   (playerSelection === 'rock' && computerSelection === 'scissors') || 
-   (playerSelection === 'paper' && computerSelection === 'rock')){
-    playerScore++; 
-    return playerWin;
-   }
 
-   else if ((playerSelection === 'rock' && computerSelection === 'paper') || (playerSelection === 'paper' && computerSelection === 'scissors') ||
-   (playerSelection === 'scissors' && computerSelection === 'rock')){
-    computerScore++; 
-    return computerWin;
-   }
+
+    function playRound(playerSelection, computerSelection) { 
+    
+      if ((playerSelection === 'rock' && computerSelection === 'rock') || (playerSelection === 'scissors' && computerSelection === 'scissors') ||
+      (playerSelection === 'paper' && computerSelection === 'paper')) {
+       return tie;
+      }
+     
+      else if ((playerSelection === 'scissors' && computerSelection === 'paper') || 
+      (playerSelection === 'rock' && computerSelection === 'scissors') || 
+      (playerSelection === 'paper' && computerSelection === 'rock')){
+       playerScore++; 
+       return playerWin;
+      }
    
-}
+      else if ((playerSelection === 'rock' && computerSelection === 'paper') || (playerSelection === 'paper' && computerSelection === 'scissors') ||
+      (playerSelection === 'scissors' && computerSelection === 'rock')){
+       computerScore++; 
+       return computerWin;
+      }
+       }
+       
+       console.log('Computer selected: ' + computerSelection);
+       console.log(playRound(playerSelection, computerSelection));
+       console.log(playerScore, computerScore);
 
-function game(){
-  for (let i=0; i<5; i++){
-    playRound();
-  }
-}
-game();
 
-console.log('Computer selected: ' + computerSelection);
-console.log(playRound(playerSelection, computerSelection));
 
