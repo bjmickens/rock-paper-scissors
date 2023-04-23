@@ -65,7 +65,7 @@ if ((playerSelection === 'rock' && computerSelection === 'rock') ||
 // Update scores 
 document.querySelector('.playerScore').innerText = playerScore;
 document.querySelector('.computerScore').innerText = computerScore;
-document.querySelector('.computerChoice').innerText = computerSelection;
+document.querySelector('.computerChoice').innerText = computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
 document.querySelector('.result').innerText = result;
 
 // Code to end game
