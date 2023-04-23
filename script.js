@@ -4,10 +4,10 @@ let computerScore = 0;
 
 let playerSelection;
 let computerSelection;
-
-// let tie = 'It is a tie!';
-// let playerWin = `You win! ${playerSelection} beats ${computerSelection}`;
-// let computerWin = `You lose! ${computerSelection} beats ${playerSelection}`;
+let result; 
+let tie = 'It is a tie!';
+let playerWin = 'You win!';
+let computerWin = 'You lose!';
 
 
 // create function called getComputerChoice
@@ -19,53 +19,63 @@ function getComputerChoice() {
 }
 
 const rockBtn = document.querySelector('.rockBtn');
-rockBtn.addEventListener('click', function () {playerSelection = 'rock'});
+rockBtn.addEventListener('click', function () {return playerSelection = 'rock';});
 rockBtn.addEventListener('click', playRound);
 
 const paperBtn = document.querySelector('.paperBtn');
-paperBtn.addEventListener('click', () => {playerSelection = 'paper'});
+paperBtn.addEventListener('click', function () {return playerSelection = 'paper';});
 paperBtn.addEventListener('click', playRound);
 
 const scissorsBtn = document.querySelector('.scissorsBtn');
-scissorsBtn.addEventListener('click', () => {playerSelection = 'scissors'});
+scissorsBtn.addEventListener('click', function () {return playerSelection = 'scissors';});
 scissorsBtn.addEventListener('click', playRound);
 
 
 
 function playRound(playerSelection, computerSelection) { 
-  computerSelection = getComputerChoice();
-
-  if ((playerSelection === 'rock' && computerSelection === 'rock') || (playerSelection === 'scissors' && computerSelection === 'scissors') ||
-  (playerSelection === 'paper' && computerSelection === 'paper')) {
-    return 'It is a tie!';
-  }
+computerSelection = getComputerChoice();
+playerSelection = playerSelection.target.className; 
   
-  else if ((playerSelection === 'scissors' && computerSelection === 'paper') || 
-  (playerSelection === 'rock' && computerSelection === 'scissors') || 
-  (playerSelection === 'paper' && computerSelection === 'rock')){
+if ((playerSelection === 'rockBtn' && computerSelection === 'rock') || 
+  (playerSelection === 'scissorsBtn' && computerSelection === 'scissors') ||
+  (playerSelection === 'paperBtn' && computerSelection === 'paper')){
+    result = tie;}
+  
+  if ((playerSelection === 'scissorsBtn' && computerSelection === 'paper') || 
+  (playerSelection === 'rockBtn' && computerSelection === 'scissors') || 
+  (playerSelection === 'paperBtn' && computerSelection === 'rock')){
     playerScore++; 
-    return `You win! ${playerSelection} beats ${computerSelection}`;
-  }
+    result = playerWin + ` ${playerSelection} beats ${computerSelection}`;}
 
-  else if ((playerSelection === 'rock' && computerSelection === 'paper') || (playerSelection === 'paper' && computerSelection === 'scissors') ||
-  (playerSelection === 'scissors' && computerSelection === 'rock')){
+  else if ((playerSelection === 'rockBtn' && computerSelection === 'paper') || 
+  (playerSelection === 'paperBtn' && computerSelection === 'scissors') ||
+  (playerSelection === 'scissorsBtn' && computerSelection === 'rock')){
     computerScore++; 
-    return `You lose! ${computerSelection} beats ${playerSelection}`;
-  }
+    result = computerWin + ` ${computerSelection} beats ${playerSelection}`;}
   
 console.log(computerSelection);
 console.log(playerSelection);
-
+console.log(result); 
 console.log('Player score = ' + playerScore, 'Computer score = ' + computerScore);
-// if (computerScore > playerScore){
-// console.log('Computer wins!');
-// }
-// else if (computerScore < playerScore){
-// console.log('Player wins!');
-// }
-// else {
-// console.log('It is a tie!');
-// }
+document.querySelector('.playerScore').innerText = playerScore;
+document.querySelector('.computerScore').innerText = computerScore;
+document.querySelector('.computerChoice').innerText = computerSelection;
+document.querySelector('.result').innerText = result;
+
+// Code to end game
+if (playerScore === 5){
+  alert('You win!');
+  playerScore = 0;
+  computerScore = 0; 
+}else if (computerScore === 5){
+  alert('You lose!');
+  playerScore = 0;
+  computerScore = 0;
+}else if (computerScore === 5 && playerScore ===5){
+  alert ('It is a tie!');
+  playerScore = 0;
+  computerScore = 0;
+}
 }
 
 
