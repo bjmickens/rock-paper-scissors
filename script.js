@@ -9,8 +9,16 @@ let tie = 'It is a tie!';
 let playerWin = 'You win!';
 let computerWin = 'You lose!';
 
+const modal = document.querySelector('.modal');
+const closeButton = document.querySelector('.close-button');
 
-// create function called getComputerChoice
+closeButton.addEventListener('click', toggleModal);
+function toggleModal() {
+  modal.classList.toggle('show-modal');
+}
+
+
+// Create function called getComputerChoice
 
 function getComputerChoice() {
   const array = ['rock', 'paper', 'scissors'];
@@ -18,45 +26,43 @@ function getComputerChoice() {
   return choice;
 }
 
-const rockBtn = document.querySelector('.rockBtn');
+// Add function to button
+const rockBtn = document.querySelector('.rock');
 rockBtn.addEventListener('click', function () {return playerSelection = 'rock';});
 rockBtn.addEventListener('click', playRound);
 
-const paperBtn = document.querySelector('.paperBtn');
+const paperBtn = document.querySelector('.paper');
 paperBtn.addEventListener('click', function () {return playerSelection = 'paper';});
 paperBtn.addEventListener('click', playRound);
 
-const scissorsBtn = document.querySelector('.scissorsBtn');
+const scissorsBtn = document.querySelector('.scissors');
 scissorsBtn.addEventListener('click', function () {return playerSelection = 'scissors';});
 scissorsBtn.addEventListener('click', playRound);
 
 
-
+// Main game
 function playRound(playerSelection, computerSelection) { 
 computerSelection = getComputerChoice();
 playerSelection = playerSelection.target.className; 
   
-if ((playerSelection === 'rockBtn' && computerSelection === 'rock') || 
-  (playerSelection === 'scissorsBtn' && computerSelection === 'scissors') ||
-  (playerSelection === 'paperBtn' && computerSelection === 'paper')){
+if ((playerSelection === 'rock' && computerSelection === 'rock') || 
+  (playerSelection === 'scissors' && computerSelection === 'scissors') ||
+  (playerSelection === 'paper' && computerSelection === 'paper')){
     result = tie;}
   
-  if ((playerSelection === 'scissorsBtn' && computerSelection === 'paper') || 
-  (playerSelection === 'rockBtn' && computerSelection === 'scissors') || 
-  (playerSelection === 'paperBtn' && computerSelection === 'rock')){
+  if ((playerSelection === 'scissors' && computerSelection === 'paper') || 
+  (playerSelection === 'rock' && computerSelection === 'scissors') || 
+  (playerSelection === 'paper' && computerSelection === 'rock')){
     playerScore++; 
     result = playerWin + ` ${playerSelection} beats ${computerSelection}`;}
 
-  else if ((playerSelection === 'rockBtn' && computerSelection === 'paper') || 
-  (playerSelection === 'paperBtn' && computerSelection === 'scissors') ||
-  (playerSelection === 'scissorsBtn' && computerSelection === 'rock')){
+  else if ((playerSelection === 'rock' && computerSelection === 'paper') || 
+  (playerSelection === 'paper' && computerSelection === 'scissors') ||
+  (playerSelection === 'scissors' && computerSelection === 'rock')){
     computerScore++; 
     result = computerWin + ` ${computerSelection} beats ${playerSelection}`;}
   
-console.log(computerSelection);
-console.log(playerSelection);
-console.log(result); 
-console.log('Player score = ' + playerScore, 'Computer score = ' + computerScore);
+// Update scores 
 document.querySelector('.playerScore').innerText = playerScore;
 document.querySelector('.computerScore').innerText = computerScore;
 document.querySelector('.computerChoice').innerText = computerSelection;
@@ -64,18 +70,23 @@ document.querySelector('.result').innerText = result;
 
 // Code to end game
 if (playerScore === 5){
-  alert('You win!');
+  toggleModal();
+  document.querySelector('.modal-content > h1').innerText = "You beat the computer!"
   playerScore = 0;
   computerScore = 0; 
 }else if (computerScore === 5){
-  alert('You lose!');
+  toggleModal();
+  document.querySelector('.modal-content > h1').innerText = "The computer beat you!"
   playerScore = 0;
   computerScore = 0;
 }else if (computerScore === 5 && playerScore ===5){
-  alert ('It is a tie!');
+  toggleModal();
+  document.querySelector('.modal-content > h1').innerText = "You tied the computer!"
   playerScore = 0;
   computerScore = 0;
 }
+
+
 }
 
 

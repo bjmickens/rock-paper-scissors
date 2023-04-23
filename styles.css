@@ -1,19 +1,82 @@
+body {
+  background-color: rgb(228, 228, 75);
+}
 .container {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding: 10px;
+  
 }
 
-.rock, .paper, .scissors {
+.rockDiv, .paperDiv, .scissorsDiv {
   border: 1px solid black;
   padding: 10px;
   border-radius: 10px;
   text-align: center;
- 
+  background-color: white; 
+}
+
+.rock:hover, .paper:hover, .scissors:hover {
+
+  background-color: lightgray; 
 }
 
 .scoreBox {
   display: flex;
   justify-content: space-evenly;
-  border: 1px solid black;
+}
+
+.playerScore, .computerScore {
+text-align: center;
+}
+
+.title {
+  text-align: center;
+  font-size: 50px;
+}
+
+.modal {
+  position: fixed; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%; 
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0; 
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem; 
+  width: 24rem;
+  border-radius: 0.5rem;
+}
+
+.close-button {
+  float: right; 
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+
+.close-button:hover {
+  background-color: darkgray;
+}
+
+.show-modal {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
