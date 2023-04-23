@@ -54,13 +54,13 @@ if ((playerSelection === 'rock' && computerSelection === 'rock') ||
   (playerSelection === 'rock' && computerSelection === 'scissors') || 
   (playerSelection === 'paper' && computerSelection === 'rock')){
     playerScore++; 
-    result = playerWin + ` ${playerSelection} beats ${computerSelection}`;}
+    result = playerWin + ` ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)}`;}
 
   else if ((playerSelection === 'rock' && computerSelection === 'paper') || 
   (playerSelection === 'paper' && computerSelection === 'scissors') ||
   (playerSelection === 'scissors' && computerSelection === 'rock')){
     computerScore++; 
-    result = computerWin + ` ${computerSelection} beats ${playerSelection}`;}
+    result = computerWin + ` ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)} beats ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)}`;}
   
 // Update scores 
 document.querySelector('.playerScore').innerText = playerScore;
